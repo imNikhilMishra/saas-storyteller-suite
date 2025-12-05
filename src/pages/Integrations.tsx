@@ -48,7 +48,7 @@ export default function Integrations() {
               Connect your favorite tools
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              Nexus integrates with 100+ tools you already use. Build powerful workflows without switching contexts.
+              builderz integrates with 100+ tools you already use. Build powerful workflows without switching contexts.
             </p>
             <div className="max-w-xl mx-auto relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />

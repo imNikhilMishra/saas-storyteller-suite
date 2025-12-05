@@ -70,9 +70,9 @@ export default function ProductTour() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
-                See Nexus in action
-              </h1>
+            <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+              See builderz in action
+            </h1>
               <p className="text-lg text-muted-foreground mb-8">
                 Start your free 14-day trial today. No credit card required. Cancel anytime.
               </p>
@@ -166,7 +166,7 @@ export default function ProductTour() {
                 Watch the full demo
               </h2>
               <p className="text-muted-foreground mb-6">
-                See how Nexus can transform your team's productivity in this 5-minute walkthrough.
+                See how builderz can transform your team's productivity in this 5-minute walkthrough.
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-3">
@@ -205,7 +205,7 @@ export default function ProductTour() {
               <span className="text-2xl font-display font-bold text-muted-foreground">SC</span>
             </div>
             <blockquote className="text-2xl font-display text-foreground mb-6">
-              "Nexus reduced our deployment time by 80%. It's been a game-changer for our engineering team."
+              "builderz reduced our deployment time by 80%. It's been a game-changer for our engineering team."
             </blockquote>
             <div className="text-muted-foreground">
               <span className="font-semibold text-foreground">Sarah Chen</span>
@@ -223,7 +223,7 @@ export default function ProductTour() {
             Ready to get started?
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Join 10,000+ companies already using Nexus. Start your free trial today.
+            Join 10,000+ companies already using builderz. Start your free trial today.
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
             <Input

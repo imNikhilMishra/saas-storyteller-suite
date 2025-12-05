@@ -187,7 +187,7 @@ export default function Careers() {
               Open Positions
             </h2>
             <p className="text-lg text-muted-foreground">
-              Find your next opportunity at Nexus.
+              Find your next opportunity at builderz.
             </p>
           </div>
 

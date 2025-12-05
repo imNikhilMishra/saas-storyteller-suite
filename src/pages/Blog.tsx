@@ -34,7 +34,7 @@ const posts = [
   },
   {
     title: "Customer Story: How TechCorp Scaled to 10M Users",
-    excerpt: "An exclusive look at how one of our customers achieved massive growth using Nexus.",
+    excerpt: "An exclusive look at how one of our customers achieved massive growth using builderz.",
     author: "Emily Watson",
     date: "Nov 22, 2024",
     readTime: "5 min read",
@@ -80,10 +80,10 @@ export default function Blog() {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
-              Nexus Blog
+              builderz Blog
             </h1>
             <p className="text-lg text-muted-foreground">
-              Insights, stories, and updates from the Nexus team. Learn how to build better products and grow your team.
+              Insights, stories, and updates from the builderz team. Learn how to build better products and grow your team.
             </p>
           </div>
         </div>

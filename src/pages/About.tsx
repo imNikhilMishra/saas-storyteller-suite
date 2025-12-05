@@ -56,7 +56,7 @@ export default function About() {
               <span className="text-gradient">team productivity</span>
             </h1>
             <p className="text-lg text-muted-foreground">
-              Nexus was founded with a simple mission: help teams work smarter, not harder. 
+              builderz was founded with a simple mission: help teams work smarter, not harder. 
               Today, we're proud to serve over 50,000 companies worldwide.
             </p>
           </div>
@@ -77,7 +77,7 @@ export default function About() {
                   tools that slowed their teams down. They knew there had to be a better way.
                 </p>
                 <p>
-                  What started as a side project quickly grew into Nexus—a unified platform that 
+                  What started as a side project quickly grew into builderz—a unified platform that 
                   brings together everything teams need to collaborate, communicate, and ship products faster.
                 </p>
                 <p>

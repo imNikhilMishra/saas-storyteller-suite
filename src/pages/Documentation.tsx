@@ -20,7 +20,7 @@ const categories = [
   {
     icon: Book,
     title: "Getting Started",
-    description: "Learn the basics of Nexus",
+    description: "Learn the basics of builderz",
     articles: 12,
     popular: ["Quick start guide", "Installation", "First project"],
   },
@@ -62,10 +62,10 @@ const categories = [
 ];
 
 const popularArticles = [
-  { title: "Getting started with Nexus", category: "Getting Started", readTime: "5 min" },
+  { title: "Getting started with builderz", category: "Getting Started", readTime: "5 min" },
   { title: "How to set up SSO", category: "Security", readTime: "10 min" },
   { title: "API authentication guide", category: "API Reference", readTime: "8 min" },
-  { title: "Connecting Slack to Nexus", category: "Integrations", readTime: "3 min" },
+  { title: "Connecting Slack to builderz", category: "Integrations", readTime: "3 min" },
   { title: "Managing team permissions", category: "Team Management", readTime: "6 min" },
   { title: "Webhook configuration", category: "API Reference", readTime: "7 min" },
 ];
@@ -99,7 +99,7 @@ export default function Documentation() {
               Documentation
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              Everything you need to build with Nexus. Guides, references, and examples.
+              Everything you need to build with builderz. Guides, references, and examples.
             </p>
             <div className="max-w-xl mx-auto relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />

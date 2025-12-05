@@ -7,19 +7,19 @@ const partnerTypes = [
   {
     icon: Building,
     title: "Solution Partners",
-    description: "Help customers implement and customize Nexus for their specific needs.",
+    description: "Help customers implement and customize builderz for their specific needs.",
     benefits: ["Co-marketing opportunities", "Technical training", "Deal registration", "Partner portal access"],
   },
   {
     icon: Globe,
     title: "Technology Partners",
-    description: "Build integrations that extend Nexus capabilities for mutual customers.",
+    description: "Build integrations that extend builderz capabilities for mutual customers.",
     benefits: ["API access & support", "Joint go-to-market", "Integration listing", "Technical resources"],
   },
   {
     icon: Award,
     title: "Referral Partners",
-    description: "Earn commissions by referring customers to Nexus.",
+    description: "Earn commissions by referring customers to builderz.",
     benefits: ["Competitive commissions", "Sales enablement", "Dedicated support", "Marketing materials"],
   },
 ];
@@ -51,7 +51,7 @@ export default function Partners() {
               Partner with Nexus
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
-              Join our partner ecosystem and grow your business while helping customers succeed with Nexus.
+              Join our partner ecosystem and grow your business while helping customers succeed with builderz.
             </p>
             <Button variant="hero" size="lg" asChild>
               <Link to="/contact">
@@ -121,7 +121,7 @@ export default function Partners() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl font-display font-bold text-foreground mb-6">
-                Why Partner with Nexus?
+                Why Partner with builderz?
               </h2>
               <div className="space-y-6">
                 <div className="flex gap-4">
@@ -201,7 +201,7 @@ export default function Partners() {
             Ready to grow together?
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Apply to become a Nexus partner today and unlock new revenue opportunities.
+            Apply to become a builderz partner today and unlock new revenue opportunities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>

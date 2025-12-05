@@ -5,14 +5,14 @@ import { ArrowRight, Quote } from "lucide-react";
 
 const featuredCaseStudy = {
   company: "TechCorp",
-  title: "How TechCorp scaled to 10 million users with Nexus",
-  excerpt: "TechCorp needed a platform that could handle rapid growth. With Nexus, they reduced deployment time by 80% and improved team productivity by 3x.",
+  title: "How TechCorp scaled to 10 million users with builderz",
+  excerpt: "TechCorp needed a platform that could handle rapid growth. With builderz, they reduced deployment time by 80% and improved team productivity by 3x.",
   metrics: [
     { value: "80%", label: "Faster deployments" },
     { value: "3x", label: "Team productivity" },
     { value: "99.99%", label: "Uptime achieved" },
   ],
-  quote: "Nexus transformed how our team works. We couldn't imagine going back.",
+  quote: "builderz transformed how our team works. We couldn't imagine going back.",
   author: "Sarah Chen, VP of Engineering",
   industry: "Technology",
   size: "500+ employees",
@@ -22,42 +22,42 @@ const caseStudies = [
   {
     company: "ScaleUp Inc",
     title: "Achieving 50% cost reduction in infrastructure",
-    excerpt: "ScaleUp was spending too much on their cloud infrastructure. With Nexus's optimization tools, they cut costs by half.",
+    excerpt: "ScaleUp was spending too much on their cloud infrastructure. With builderz's optimization tools, they cut costs by half.",
     industry: "FinTech",
     metric: "50% cost savings",
   },
   {
     company: "Enterprise Co",
     title: "Enterprise-grade security without the complexity",
-    excerpt: "Enterprise Co needed SOC 2 compliance fast. Nexus helped them achieve certification in just 6 weeks.",
+    excerpt: "Enterprise Co needed SOC 2 compliance fast. builderz helped them achieve certification in just 6 weeks.",
     industry: "Healthcare",
     metric: "6 weeks to SOC 2",
   },
   {
     company: "GlobalSoft",
     title: "Unifying 20 teams across 10 countries",
-    excerpt: "GlobalSoft struggled with fragmented tools. Nexus brought everything together into a single platform.",
+    excerpt: "GlobalSoft struggled with fragmented tools. builderz brought everything together into a single platform.",
     industry: "Software",
     metric: "20 teams unified",
   },
   {
     company: "NextGen",
     title: "From 0 to 1 million users in 12 months",
-    excerpt: "NextGen's startup needed a platform that could scale. Nexus grew with them every step of the way.",
+    excerpt: "NextGen's startup needed a platform that could scale. builderz grew with them every step of the way.",
     industry: "E-commerce",
     metric: "1M users in 12mo",
   },
   {
     company: "InnovateTech",
     title: "Reducing engineering onboarding time by 70%",
-    excerpt: "New engineers at InnovateTech used to take weeks to get productive. With Nexus, they're shipping code on day one.",
+    excerpt: "New engineers at InnovateTech used to take weeks to get productive. With builderz, they're shipping code on day one.",
     industry: "Technology",
     metric: "70% faster onboarding",
   },
   {
     company: "DataFirst",
     title: "Processing 10x more data with the same team",
-    excerpt: "DataFirst's analytics team was overwhelmed. Nexus automation helped them scale without adding headcount.",
+    excerpt: "DataFirst's analytics team was overwhelmed. builderz automation helped them scale without adding headcount.",
     industry: "Analytics",
     metric: "10x data capacity",
   },
@@ -76,7 +76,7 @@ export default function CaseStudies() {
               Customer Success Stories
             </h1>
             <p className="text-lg text-muted-foreground">
-              See how leading companies use Nexus to transform their workflows and achieve remarkable results.
+              See how leading companies use builderz to transform their workflows and achieve remarkable results.
             </p>
           </div>
         </div>
@@ -187,7 +187,7 @@ export default function CaseStudies() {
             Ready to become our next success story?
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Join thousands of companies that trust Nexus to power their most critical workflows.
+            Join thousands of companies that trust builderz to power their most critical workflows.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" asChild>
