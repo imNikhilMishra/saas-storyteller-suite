@@ -169,7 +169,7 @@ export default function Features() {
             Ready to get started?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of teams already using Nexus to power their workflows.
+            Join thousands of teams already using builderz to power their workflows.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="lg" asChild>

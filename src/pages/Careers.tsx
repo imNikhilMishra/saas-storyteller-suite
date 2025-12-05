@@ -158,7 +158,7 @@ export default function Careers() {
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  At Nexus, we believe that the best work happens when people are trusted, supported, and empowered to do what they do best.
+                  At builderz, we believe that the best work happens when people are trusted, supported, and empowered to do what they do best.
                 </p>
                 <p>
                   We're building a company where everyone has a voice, where we celebrate wins together, and where we learn from our failures.

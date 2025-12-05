@@ -48,7 +48,7 @@ export default function Partners() {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
-              Partner with Nexus
+              Partner with builderz
             </h1>
             <p className="text-lg text-muted-foreground mb-8">
               Join our partner ecosystem and grow your business while helping customers succeed with builderz.

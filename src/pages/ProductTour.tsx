@@ -44,7 +44,7 @@ const steps = [
   {
     number: "04",
     title: "Scale with confidence",
-    description: "As your team grows, Nexus grows with you. Enterprise-ready from day one.",
+    description: "As your team grows, builderz grows with you. Enterprise-ready from day one.",
   },
 ];
 
