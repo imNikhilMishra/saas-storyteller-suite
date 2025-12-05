@@ -10,7 +10,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    content: "hello@nexus.com",
+    content: "hello@builderz.com",
     description: "We'll respond within 24 hours",
   },
   {

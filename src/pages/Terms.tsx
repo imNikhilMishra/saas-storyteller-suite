@@ -21,14 +21,14 @@ export default function Terms() {
               <div>
                 <h2 className="text-2xl font-display font-bold text-foreground mb-4">1. Agreement to Terms</h2>
                 <p>
-                  By accessing or using Nexus's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.
+                  By accessing or using builderz's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.
                 </p>
               </div>
 
               <div>
                 <h2 className="text-2xl font-display font-bold text-foreground mb-4">2. Use License</h2>
                 <p>
-                  Permission is granted to temporarily access and use Nexus's services for personal or business purposes, subject to the restrictions in these terms. This license shall automatically terminate if you violate any of these restrictions.
+                  Permission is granted to temporarily access and use builderz's services for personal or business purposes, subject to the restrictions in these terms. This license shall automatically terminate if you violate any of these restrictions.
                 </p>
                 <ul className="list-disc list-inside mt-4 space-y-2">
                   <li>You may not modify or copy our software without permission</li>
@@ -55,14 +55,14 @@ export default function Terms() {
               <div>
                 <h2 className="text-2xl font-display font-bold text-foreground mb-4">5. Intellectual Property</h2>
                 <p>
-                  The service and its original content, features, and functionality are owned by Nexus and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.
+                  The service and its original content, features, and functionality are owned by builderz and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.
                 </p>
               </div>
 
               <div>
                 <h2 className="text-2xl font-display font-bold text-foreground mb-4">6. Limitation of Liability</h2>
                 <p>
-                  In no event shall Nexus, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service.
+                  In no event shall builderz, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the service.
                 </p>
               </div>
 
@@ -90,7 +90,7 @@ export default function Terms() {
               <div>
                 <h2 className="text-2xl font-display font-bold text-foreground mb-4">10. Contact Us</h2>
                 <p>
-                  If you have any questions about these Terms, please contact us at legal@nexus.com or through our contact page.
+                  If you have any questions about these Terms, please contact us at legal@builderz.com or through our contact page.
                 </p>
               </div>
             </div>

@@ -48,7 +48,7 @@ const features = [
 
 const testimonials = [
   {
-    quote: "Nexus transformed how our team works. We've cut deployment time by 80% and improved collaboration across all departments.",
+    quote: "builderz transformed how our team works. We've cut deployment time by 80% and improved collaboration across all departments.",
     author: "Sarah Chen",
     role: "VP of Engineering",
     company: "TechCorp",
@@ -95,7 +95,7 @@ export default function Index() {
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up delay-200">
-              Nexus brings together everything your team needs to build, ship, and scale products faster than ever before.
+              builderz brings together everything your team needs to build, ship, and scale products faster than ever before.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up delay-300">
@@ -227,7 +227,7 @@ export default function Index() {
               Loved by teams everywhere
             </h2>
             <p className="text-lg text-muted-foreground">
-              See why thousands of companies choose Nexus to power their workflows.
+              See why thousands of companies choose builderz to power their workflows.
             </p>
           </div>
 
@@ -273,7 +273,7 @@ export default function Index() {
                 Ready to transform your workflow?
               </h2>
               <p className="text-lg text-primary-foreground/80 mb-8">
-                Join 10,000+ companies already using Nexus to build better products, faster.
+                Join 10,000+ companies already using builderz to build better products, faster.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" variant="secondary" asChild>

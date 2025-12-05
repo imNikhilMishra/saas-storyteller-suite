@@ -44,10 +44,10 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-display font-bold text-lg">N</span>
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-display font-bold text-lg">b</span>
               </div>
-              <span className="font-display font-semibold text-xl">Nexus</span>
+              <span className="font-display font-semibold text-xl">builderz</span>
             </Link>
             <p className="text-muted-foreground text-sm mb-6 max-w-xs">
               Empowering teams to build, scale, and succeed with our enterprise-grade platform.
@@ -88,7 +88,7 @@ export function Footer() {
 
         <div className="mt-16 pt-8 border-t border-muted-foreground/20 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Nexus. All rights reserved.
+            © {new Date().getFullYear()} builderz. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link to="/privacy" className="text-muted-foreground hover:text-background text-sm transition-colors">

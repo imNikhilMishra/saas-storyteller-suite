@@ -21,7 +21,7 @@ export default function Privacy() {
               <div>
                 <h2 className="text-2xl font-display font-bold text-foreground mb-4">Introduction</h2>
                 <p>
-                  At Nexus, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service. Please read this privacy policy carefully.
+                  At builderz, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our service. Please read this privacy policy carefully.
                 </p>
               </div>
 
@@ -124,7 +124,7 @@ export default function Privacy() {
               <div>
                 <h2 className="text-2xl font-display font-bold text-foreground mb-4">Contact Us</h2>
                 <p>
-                  If you have questions about this Privacy Policy, please contact us at privacy@nexus.com or through our contact page.
+                  If you have questions about this Privacy Policy, please contact us at privacy@builderz.com or through our contact page.
                 </p>
               </div>
             </div>

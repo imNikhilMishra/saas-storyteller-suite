@@ -60,7 +60,7 @@ const plans = [
 
 const faqs = [
   {
-    question: "Can I try Nexus for free?",
+    question: "Can I try builderz for free?",
     answer: "Yes! All plans come with a 14-day free trial. No credit card required.",
   },
   {
