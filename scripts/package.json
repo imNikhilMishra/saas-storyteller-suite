@@ -1,0 +1,17 @@
+{
+  "name": "analytics-data-generator",
+  "version": "1.0.0",
+  "description": "Playwright-based script to generate dummy analytics data",
+  "main": "generate-analytics-data.js",
+  "type": "module",
+  "scripts": {
+    "start": "node generate-analytics-data.js"
+  },
+  "keywords": ["analytics", "playwright", "dummy-data"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "playwright": "^1.57.0"
+  }
+}
