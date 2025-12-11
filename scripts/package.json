@@ -5,7 +5,16 @@
   "main": "generate-analytics-data.js",
   "type": "module",
   "scripts": {
-    "start": "node generate-analytics-data.js"
+    "start": "node generate-analytics-data.js",
+    "pm2:start": "pm2 start ecosystem.config.cjs",
+    "pm2:stop": "pm2 stop analytics-generator",
+    "pm2:restart": "pm2 restart analytics-generator",
+    "pm2:delete": "pm2 delete analytics-generator",
+    "pm2:logs": "pm2 logs analytics-generator",
+    "pm2:monit": "pm2 monit",
+    "pm2:status": "pm2 status",
+    "pm2:save": "pm2 save",
+    "pm2:startup": "pm2 startup"
   },
   "keywords": [
     "analytics",
@@ -18,6 +27,7 @@
     "dotenv": "^17.2.3",
     "playwright": "^1.57.0",
     "playwright-extra": "^4.3.6",
+    "pm2": "^5.4.3",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "winston": "^3.19.0",
     "winston-daily-rotate-file": "^5.0.0"

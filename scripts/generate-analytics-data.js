@@ -3,6 +3,7 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import logger from './logger.js';
 
 // Add stealth plugin to bypass bot detection
 chromium.use(StealthPlugin());
@@ -134,9 +135,19 @@ function getWeightedPage() {
 }
 
 async function simulateUserSession(browser, userId) {
+  const sessionStartTime = Date.now();
+  const userAgent = randomChoice(USER_AGENTS);
+  const viewport = randomChoice(VIEWPORTS);
+
+  logger.info('Starting user session', {
+    userId,
+    userAgent: userAgent.substring(0, 50) + '...',
+    viewport
+  });
+
   const context = await browser.newContext({
-    userAgent: randomChoice(USER_AGENTS),
-    viewport: randomChoice(VIEWPORTS),
+    userAgent,
+    viewport,
     locale: randomChoice(['en-US', 'en-GB', 'en-CA']),
     timezoneId: randomChoice(['America/New_York', 'America/Los_Angeles', 'America/Chicago']),
     hasTouch: false,
@@ -160,25 +171,33 @@ async function simulateUserSession(browser, userId) {
     // Only log actual event tracking requests
     if (url.includes('posthog.com') && url.includes('/e/')) {
       posthogEventCount++;
-      console.log(`  [User ${userId}] 🎯 PostHog EVENT #${posthogEventCount}: ${request.method()} ${url.substring(0, 80)}...`);
+      logger.debug('PostHog event request', {
+        userId,
+        eventNumber: posthogEventCount,
+        method: request.method(),
+        url: url.substring(0, 80) + '...'
+      });
     }
   });
 
   page.on('response', response => {
     const url = response.url();
     if (url.includes('posthog.com') && url.includes('/e/')) {
-      console.log(`  [User ${userId}] ✅ Event sent: ${response.status()}`);
+      logger.debug('PostHog event response', {
+        userId,
+        status: response.status()
+      });
     }
   });
 
   const pages = getRandomPages();
 
-  console.log(`  [User ${userId}] Starting session with ${pages.length} page(s)`);
+  logger.info('Session plan', { userId, pageCount: pages.length, pages });
 
   try {
     for (const pagePath of pages) {
       const url = `${CONFIG.siteUrl}${pagePath}`;
-      console.log(`  [User ${userId}] Visiting: ${pagePath}`);
+      logger.info('Visiting page', { userId, pagePath });
 
       await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
 
@@ -203,9 +222,23 @@ async function simulateUserSession(browser, userId) {
       }
     }
 
-    console.log(`  [User ${userId}] Session completed`);
+    const sessionDuration = Math.round((Date.now() - sessionStartTime) / 1000);
+    logger.info('Session completed successfully', {
+      userId,
+      pagesVisited: pages.length,
+      posthogEvents: posthogEventCount,
+      durationSeconds: sessionDuration
+    });
+    return { success: true, userId, pagesVisited: pages.length, posthogEvents: posthogEventCount };
   } catch (error) {
-    console.error(`  [User ${userId}] Error: ${error.message}`);
+    const sessionDuration = Math.round((Date.now() - sessionStartTime) / 1000);
+    logger.error('Session failed', {
+      userId,
+      error: error.message,
+      stack: error.stack,
+      durationSeconds: sessionDuration
+    });
+    return { success: false, userId, error: error.message };
   } finally {
     await context.close();
   }
@@ -213,50 +246,98 @@ async function simulateUserSession(browser, userId) {
 
 async function runExecution() {
   const userCount = getRandomUserCount();
-  console.log(`\n${'='.repeat(60)}`);
-  console.log(`Starting execution at ${new Date().toISOString()}`);
-  console.log(`Spawning ${userCount} parallel user sessions`);
-  console.log(`${'='.repeat(60)}\n`);
+  const executionStartTime = Date.now();
 
-  const browser = await chromium.launch({ headless: true });
+  logger.info('Starting execution batch', {
+    userCount,
+    timestamp: new Date().toISOString()
+  });
 
-  // Run all user sessions in parallel
-  const sessions = [];
-  for (let i = 1; i <= userCount; i++) {
-    sessions.push(simulateUserSession(browser, i));
+  let browser;
+  try {
+    browser = await chromium.launch({ headless: true });
+
+    // Run all user sessions in parallel
+    const sessions = [];
+    for (let i = 1; i <= userCount; i++) {
+      sessions.push(simulateUserSession(browser, i));
+    }
+
+    const results = await Promise.all(sessions);
+    await browser.close();
+
+    // Calculate statistics
+    const successful = results.filter(r => r.success).length;
+    const failed = results.filter(r => !r.success).length;
+    const totalPages = results.filter(r => r.success).reduce((sum, r) => sum + r.pagesVisited, 0);
+    const totalEvents = results.filter(r => r.success).reduce((sum, r) => sum + r.posthogEvents, 0);
+    const executionDuration = Math.round((Date.now() - executionStartTime) / 1000);
+
+    logger.info('Execution batch completed', {
+      userCount,
+      successful,
+      failed,
+      totalPages,
+      totalEvents,
+      durationSeconds: executionDuration
+    });
+
+    return { userCount, successful, failed, totalPages, totalEvents };
+  } catch (error) {
+    logger.error('Execution batch failed', {
+      error: error.message,
+      stack: error.stack,
+      userCount
+    });
+    if (browser) {
+      await browser.close();
+    }
+    throw error;
   }
-
-  await Promise.all(sessions);
-  await browser.close();
-
-  return userCount;
 }
 
 async function main() {
-  console.log('\n' + '='.repeat(60));
-  console.log('Analytics Data Generator');
-  console.log('='.repeat(60));
-  console.log(`Site URL: ${CONFIG.siteUrl}`);
-  console.log(`Target sessions/day: ${CONFIG.targetSessionsPerDay}`);
-  console.log(`Interval range: ${CONFIG.minIntervalMinutes}-${CONFIG.maxIntervalMinutes} minutes`);
-  console.log(`Parallel users: ${CONFIG.minParallelUsers}-${CONFIG.maxParallelUsers}`);
-  console.log('='.repeat(60) + '\n');
+  logger.info('Analytics Data Generator started', {
+    siteUrl: CONFIG.siteUrl,
+    targetSessionsPerDay: CONFIG.targetSessionsPerDay,
+    intervalRange: `${CONFIG.minIntervalMinutes}-${CONFIG.maxIntervalMinutes} minutes`,
+    parallelUsers: `${CONFIG.minParallelUsers}-${CONFIG.maxParallelUsers}`,
+    nodeVersion: process.version,
+    platform: process.platform
+  });
 
   let totalSessions = 0;
+  let totalSuccessful = 0;
+  let totalFailed = 0;
   let dailySessions = 0;
+  let dailySuccessful = 0;
+  let dailyFailed = 0;
   let lastResetDate = new Date().toDateString();
 
   while (true) {
     try {
-      const sessionsGenerated = await runExecution();
-      totalSessions += sessionsGenerated;
-      dailySessions += sessionsGenerated;
+      const result = await runExecution();
+
+      totalSessions += result.userCount;
+      totalSuccessful += result.successful;
+      totalFailed += result.failed;
+      dailySessions += result.userCount;
+      dailySuccessful += result.successful;
+      dailyFailed += result.failed;
 
       // Reset daily counter at midnight
       const currentDate = new Date().toDateString();
       if (currentDate !== lastResetDate) {
-        console.log(`\n[Daily Report] ${lastResetDate}: ${dailySessions} sessions generated`);
+        logger.info('Daily report', {
+          date: lastResetDate,
+          totalSessions: dailySessions,
+          successful: dailySuccessful,
+          failed: dailyFailed,
+          successRate: dailySessions > 0 ? ((dailySuccessful / dailySessions) * 100).toFixed(2) + '%' : 'N/A'
+        });
         dailySessions = 0;
+        dailySuccessful = 0;
+        dailyFailed = 0;
         lastResetDate = currentDate;
       }
 
@@ -264,13 +345,24 @@ async function main() {
       const intervalMin = Math.round(intervalMs / 60000);
       const nextRunTime = new Date(Date.now() + intervalMs).toLocaleTimeString();
 
-      console.log(`\n[Stats] Total sessions: ${totalSessions} | Today: ${dailySessions}/${CONFIG.targetSessionsPerDay}`);
-      console.log(`[Next Run] In ${intervalMin} minutes (at ${nextRunTime})\n`);
+      logger.info('Status update', {
+        totalSessions,
+        totalSuccessful,
+        totalFailed,
+        todaySessions: dailySessions,
+        todayTarget: CONFIG.targetSessionsPerDay,
+        todayProgress: ((dailySessions / CONFIG.targetSessionsPerDay) * 100).toFixed(1) + '%',
+        nextRunInMinutes: intervalMin,
+        nextRunTime
+      });
 
       await new Promise(resolve => setTimeout(resolve, intervalMs));
     } catch (error) {
-      console.error(`\n[Error] ${error.message}`);
-      console.log('Retrying in 5 minutes...\n');
+      logger.error('Main loop error', {
+        error: error.message,
+        stack: error.stack
+      });
+      logger.warn('Retrying in 5 minutes...');
       await new Promise(resolve => setTimeout(resolve, 5 * 60 * 1000));
     }
   }
@@ -278,13 +370,28 @@ async function main() {
 
 // Handle graceful shutdown
 process.on('SIGINT', () => {
-  console.log('\n\nShutting down gracefully...');
+  logger.warn('Received SIGINT signal, shutting down gracefully...');
   process.exit(0);
 });
 
 process.on('SIGTERM', () => {
-  console.log('\n\nShutting down gracefully...');
+  logger.warn('Received SIGTERM signal, shutting down gracefully...');
   process.exit(0);
+});
+
+process.on('uncaughtException', (error) => {
+  logger.error('Uncaught exception', {
+    error: error.message,
+    stack: error.stack
+  });
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  logger.error('Unhandled rejection', {
+    reason: reason,
+    promise: promise
+  });
 });
 
 // Start the script
