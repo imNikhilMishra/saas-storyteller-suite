@@ -1,7 +1,11 @@
-import { chromium } from 'playwright';
+import { chromium } from 'playwright-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+
+// Add stealth plugin to bypass bot detection
+chromium.use(StealthPlugin());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -133,9 +137,40 @@ async function simulateUserSession(browser, userId) {
   const context = await browser.newContext({
     userAgent: randomChoice(USER_AGENTS),
     viewport: randomChoice(VIEWPORTS),
+    locale: randomChoice(['en-US', 'en-GB', 'en-CA']),
+    timezoneId: randomChoice(['America/New_York', 'America/Los_Angeles', 'America/Chicago']),
+    hasTouch: false,
+    javaScriptEnabled: true,
+    bypassCSP: false,
+    // Add realistic browser features to avoid bot detection
+    extraHTTPHeaders: {
+      'Accept-Language': 'en-US,en;q=0.9',
+      'sec-ch-ua': '"Google Chrome";v="120", "Not_A Brand";v="99", "Chromium";v="120"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"Windows"',
+    }
   });
 
   const page = await context.newPage();
+
+  // Monitor PostHog EVENT requests (the important ones)
+  let posthogEventCount = 0;
+  page.on('request', request => {
+    const url = request.url();
+    // Only log actual event tracking requests
+    if (url.includes('posthog.com') && url.includes('/e/')) {
+      posthogEventCount++;
+      console.log(`  [User ${userId}] 🎯 PostHog EVENT #${posthogEventCount}: ${request.method()} ${url.substring(0, 80)}...`);
+    }
+  });
+
+  page.on('response', response => {
+    const url = response.url();
+    if (url.includes('posthog.com') && url.includes('/e/')) {
+      console.log(`  [User ${userId}] ✅ Event sent: ${response.status()}`);
+    }
+  });
+
   const pages = getRandomPages();
 
   console.log(`  [User ${userId}] Starting session with ${pages.length} page(s)`);
@@ -146,6 +181,9 @@ async function simulateUserSession(browser, userId) {
       console.log(`  [User ${userId}] Visiting: ${pagePath}`);
 
       await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+
+      // Wait for PostHog to initialize and send pageview
+      await page.waitForTimeout(3000);
 
       // Random scroll behavior
       const scrolls = random(1, 3);

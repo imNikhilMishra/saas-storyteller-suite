@@ -7,11 +7,19 @@
   "scripts": {
     "start": "node generate-analytics-data.js"
   },
-  "keywords": ["analytics", "playwright", "dummy-data"],
+  "keywords": [
+    "analytics",
+    "playwright",
+    "dummy-data"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^17.2.3",
-    "playwright": "^1.57.0"
+    "playwright": "^1.57.0",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "winston": "^3.19.0",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }
